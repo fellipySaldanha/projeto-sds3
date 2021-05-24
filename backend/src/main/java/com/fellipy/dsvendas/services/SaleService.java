@@ -1,6 +1,10 @@
 package com.fellipy.dsvendas.services;
 
+import java.util.List;
+
 import com.fellipy.dsvendas.dto.SaleDTO;
+import com.fellipy.dsvendas.dto.SalesSuccessDTO;
+import com.fellipy.dsvendas.dto.SalesSumDTO;
 import com.fellipy.dsvendas.entities.Sale;
 import com.fellipy.dsvendas.repositories.SaleRepository;
 import com.fellipy.dsvendas.repositories.SellerRepository;
@@ -27,4 +31,13 @@ public class SaleService {
         return result.map(saleResult -> new SaleDTO(saleResult));
     }
     
+    @Transactional(readOnly = true)
+    public List<SalesSumDTO> amountGroupBySeller(){
+        return repository.amountGroupBySeller();
+    }
+
+    @Transactional(readOnly = true)
+    public List<SalesSuccessDTO> successGroupBySeller(){
+        return repository.successGroupBySeller();
+    }
 }
